@@ -10,6 +10,8 @@ from alembic import context
 sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.database import Base
+import src.models
+
 from src.config import settings
 
 # this is the Alembic Config object, which provides
