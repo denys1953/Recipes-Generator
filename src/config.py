@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     APP_NAME: str = "Recipes Generator"
     DEBUG: bool = False
     SECRET_KEY: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
+    ALGORITHM: str
 
     # Server
     HOST: str = "0.0.0.0"

@@ -1,8 +1,9 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import Depends, FastAPI, UploadFile, File
 
 from src.ai_provider.service import AIService
 
-# from app.auth.router import router as auth_router
+from src.auth.dependencies import get_current_user
+from src.auth.router import router as auth_router
 
 swagger_params = {
     "persistAuthorization": True
@@ -18,7 +19,7 @@ async def main():
     return {"Status": "OK"}
 
 @app.post("/test-ai")
-async def test_ai(ingredients: list[str]):
+async def test_ai(ingredients: list[str], current_user=Depends(get_current_user)):
     recipe = await ai_service.create_recipe_from_text(ingredients)
     return recipe
 
@@ -29,4 +30,4 @@ async def test_ai_image(file: UploadFile = File(...)):
     return recipe
 
 
-# app.include_router(auth_router, prefix="/auth", tags=["Auth"])
+app.include_router(auth_router, prefix="/auth", tags=["Auth"])

@@ -3,10 +3,14 @@ annotated-doc==0.0.4
 annotated-types==0.7.0
 anyio==4.12.1
 asyncpg==0.31.0
+bcrypt==5.0.0
 certifi==2026.1.4
 charset-normalizer==3.4.4
 click==8.3.1
 distro==1.9.0
+dnspython==2.8.0
+ecdsa==0.19.1
+email-validator==2.3.0
 fastapi==0.128.0
 google-ai-generativelanguage==0.6.15
 google-api-core==2.25.2
@@ -37,10 +41,12 @@ pydantic_core==2.41.5
 pydentic==0.0.1.dev3
 pyparsing==3.3.1
 python-dotenv==1.2.1
+python-jose==3.5.0
 python-multipart==0.0.21
 python-stdnum==2.2
 requests==2.32.5
 rsa==4.9.1
+six==1.17.0
 sniffio==1.3.1
 SQLAlchemy==2.0.45
 starlette==0.50.0
