@@ -37,6 +37,7 @@ pydantic_core==2.41.5
 pydentic==0.0.1.dev3
 pyparsing==3.3.1
 python-dotenv==1.2.1
+python-multipart==0.0.21
 python-stdnum==2.2
 requests==2.32.5
 rsa==4.9.1

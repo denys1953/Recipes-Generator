@@ -34,6 +34,7 @@ class Settings(BaseSettings):
 
     # External APIs
     GEMINI_API_KEY: str
+    GEMINI_MODEL_NAME: str
 
     @property
     def database_url(self) -> str:
