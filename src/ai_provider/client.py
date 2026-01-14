@@ -2,10 +2,12 @@ from src.config import settings
 from .schemas import RecipeAIResponse
 from src.recipes.service import save_recipe
 from sqlalchemy.ext.asyncio import AsyncSession
+from src.recipes.models import Recipe
 
 from typing import Optional
 
 import google.generativeai as genai
+from sqlalchemy.future import select
 
 class GeminiClient:
     def __init__(self):
@@ -20,6 +22,13 @@ class GeminiClient:
 
     async def generate_recipe(self, prompt: str, user_id: int, db: AsyncSession, image_data: Optional[bytes] = None) -> RecipeAIResponse:
         content = [prompt]
+        
+        query = select(Recipe.title).where(Recipe.user_id == user_id)
+        result = await db.execute(query)
+        restriction = "Make sure you don't repeat the following recipes: " + ", ".join([row[0] for row in result.all()])
+        
+        if result:
+            content.append(restriction)
 
         if image_data:
             content.append({

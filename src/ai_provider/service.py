@@ -1,6 +1,7 @@
 from .client import GeminiClient
 from .schemas import RecipeAIResponse
 from .constants import SYSTEM_PROMPT
+from src.recipes.models import Recipe
 
 class AIService:
     def __init__(self):
