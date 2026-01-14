@@ -4,6 +4,7 @@ from src.ai_provider.service import AIService
 
 from src.auth.dependencies import get_current_user
 from src.auth.router import router as auth_router
+from src.ai_provider.router import router as ai_router
 
 swagger_params = {
     "persistAuthorization": True
@@ -12,22 +13,11 @@ swagger_params = {
 app = FastAPI(
     swagger_ui_parameters=swagger_params
 )
-ai_service = AIService()
 
 @app.get("/")
 async def main():
     return {"Status": "OK"}
 
-@app.post("/test-ai")
-async def test_ai(ingredients: list[str], current_user=Depends(get_current_user)):
-    recipe = await ai_service.create_recipe_from_text(ingredients)
-    return recipe
-
-@app.post("/test-ai-image")
-async def test_ai_image(file: UploadFile = File(...)):
-    image_data = await file.read()
-    recipe = await ai_service.create_recipe_from_image(image_data)
-    return recipe
-
 
 app.include_router(auth_router, prefix="/auth", tags=["Auth"])
+app.include_router(ai_router, prefix="/ai", tags=["AI"])

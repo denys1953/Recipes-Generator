@@ -1,5 +1,7 @@
 from src.config import settings
 from .schemas import RecipeAIResponse
+from src.recipes.service import save_recipe
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from typing import Optional
 
@@ -16,7 +18,7 @@ class GeminiClient:
             }
         )
 
-    async def generate_recipe(self, prompt: str, image_data: Optional[bytes] = None) -> RecipeAIResponse:
+    async def generate_recipe(self, prompt: str, user_id: int, db: AsyncSession, image_data: Optional[bytes] = None) -> RecipeAIResponse:
         content = [prompt]
 
         if image_data:
@@ -26,7 +28,11 @@ class GeminiClient:
             })
 
         response = self.model.generate_content(content)
+        
+        recipe = RecipeAIResponse.model_validate_json(response.text)
 
-        return RecipeAIResponse.model_validate_json(response.text)
+        await save_recipe(db, recipe, user_id)
+
+        return recipe
     
 

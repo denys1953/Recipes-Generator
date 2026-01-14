@@ -1,10 +1,14 @@
 from datetime import UTC, datetime
+from typing import TYPE_CHECKING, List
 
 from src.database import Base
 
 from sqlalchemy import Boolean, DateTime, Integer, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 import sqlalchemy as sa
+
+if TYPE_CHECKING:
+    from src.recipes.models import Recipe
 
 class User(Base):
     __tablename__ = "users"
@@ -27,3 +31,5 @@ class User(Base):
         server_default=sa.text("CURRENT_TIMESTAMP"),
         nullable=False,
     )
+
+    recipes: Mapped[List["Recipe"]] = relationship(back_populates="author")
