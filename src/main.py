@@ -4,7 +4,7 @@ from src.ai_provider.service import AIService
 
 from src.auth.dependencies import get_current_user
 from src.auth.router import router as auth_router
-from src.ai_provider.router import router as ai_router
+from src.generator.router import router as generator_router
 
 swagger_params = {
     "persistAuthorization": True
@@ -20,4 +20,4 @@ async def main():
 
 
 app.include_router(auth_router, prefix="/auth", tags=["Auth"])
-app.include_router(ai_router, prefix="/ai", tags=["AI"])
+app.include_router(generator_router, prefix="/generator", tags=["Generator"])
