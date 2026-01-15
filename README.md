@@ -36,8 +36,9 @@ An asynchronous **FastAPI** service that leverages **Google Gemini AI** to trans
 ```bash
 git clone <your-repo-url>
 cd "Recipes Generator"
-2. Configure Environment Variables
-
+```
+### 2. Configure Environment Variables
+```
 Create a .env file in the root directory and fill in your credentials:
 
 # App Security
@@ -55,13 +56,15 @@ POSTGRES_PORT=5432
 # AI Provider
 GEMINI_API_KEY=your_google_gemini_api_key
 GEMINI_MODEL_NAME=gemini-1.5-flash
-3. Run with Docker (Recommended)
-
+```
+### 3. Run with Docker (Recommended)
+```
 docker-compose up --build
 
 The API will be available at http://localhost:8000
 
-4. Local Setup (Manual)
+```
+### 4. Local Setup (Manual)
 
 # Create and activate virtual environment
 python -m venv .venv
