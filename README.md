@@ -65,7 +65,7 @@ The API will be available at http://localhost:8000
 
 ```
 ### 4. Local Setup (Manual)
-
+```
 # Create and activate virtual environment
 python -m venv .venv
 source .venv/bin/activate
@@ -116,3 +116,4 @@ curl -X 'POST' \
   "ingredients": ["chicken breast", "broccoli", "soy sauce"]
 }'
 
+```
